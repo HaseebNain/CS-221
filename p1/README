@@ -1,0 +1,51 @@
+
+****************
+* p1
+* CompSci 221-001
+* January 30
+* Haseeb Nain
+**************** 
+
+PROJECT OVERVIEW:
+
+This program receives a file with a topographic map of numbers, using various methods implemented from an interface and new methods
+created in the TopoMap class.. With a various amount of functionality.
+
+
+INCLUDED FILES:
+
+ * README - this file
+ * InvalidFileFormatException.java - This class is used to generate an exception when the format of the inputed file is incorrect.
+ * TopoMap.java - This creates the "base map" and provides various amounts of functions relating to that "base map".
+ * TopoMapBaseInterface.java - This class provides the interface which was used to create the TopoMap.java class.
+ * TopoMapTest.java -  This class is the main test which checks the functionality of the TopoMap.java class.
+ * TopoMapNewMapTest - This class was created by me, the purpose of this class is to test various components of the TopoMap.java class, in a way that tested individual method and variables.
+ 
+
+BUILDING AND RUNNING:
+
+ * In order to run this program from the command line: 
+ 	-javac TopoMap.java
+ 	or you can run
+ 	-javac TopoMapTest,java	
+ 		+ The argument that needs to be issued is "sampleMap.txt" for the TopoMap.java class
+ 		+ The argument used for the TopoMapNewMapTest.java class is "myMap.txt'
+ * The program worked correctly on Windows and Onyx computers.
+ * To run this program, you must run either the TopoMapTest.java class or the TopoMapNewMapTest.java to test the functionality of the program.
+ 
+
+PROJECT DESIGN NOTES:
+
+ * This program will receive a text file, and perform different actions relating to that inputed map of numbers.
+ * TopoMap.java was able to pass the original ten tests provided in the TopoMapTest.java class.
+ * TopoMap.java has also passed an additional test created in the TopoMapTest.java class to work and get the evaluated map of a 4x5 TopoMap. 
+ 
+
+PROJECT DEVELOPMENT AND TESTING NOTES:
+
+ * The TopoMap.java class needed to implement the provided interface, TopoMapBaseInterface.java in order to run. With the initial "simple" methods of calculating
+ 	the Min, Max and Average I began focus on obtaining the elevated map.
+ * The getElevatedBaseMap method was difficult at first, however by creating separate methods to find the values of the cardinal numbers(ie North, South, East and West)
+ 	and a separate method to find the new value at any given coordinate. A simple for loop was able to be used to obtain the new elevated value of the entire TopoMap.
+ * In order to obtain more accurate testing data, I created the class TopoMapNewMapTest.java which tested each method and produced the output.
+ 	A further developed toString() was also developed to provide the most information. 

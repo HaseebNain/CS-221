@@ -1,0 +1,47 @@
+
+****************
+* HW_Debugging
+* CompSci 221-001
+* Febuary 20
+* Haseeb Nain
+**************** 
+
+PROJECT OVERVIEW:
+
+This assignment called for the use of the Eclipse debugging tool to analyze 
+
+INCLUDED FILES:
+
+ * README - this file
+ 
+BUILDING AND RUNNING:
+
+ * The program worked correctly on Windows computers. I was able to initiate the debugging mode and analyze both the QuickSort and the Recognizer classes.
+ 
+PROJECT DESIGN NOTES:
+
+ * The content of the java classes was not changed in anyway whatsoever. The only impact I had on these classes was the use of breakpoints.
+
+PROJECT DEVELOPMENT AND TESTING NOTES:
+
+ * In order to analyze the QuickSort to find the values of the various variables I found method calls that used the interested variables as parameters.
+ 	-The points of interest were specifically lines 33, 35, and 37.
+ * The following data presents the observations as a result of the debugging.
+ 
+Call		table		first		last		pivot		pivIndex
+1		17		0		49		83		41
+2		17		0		40		73		38		
+3		17		0		37		11		2
+4		17		0		1		11		1
+5		17		0		37		11		2
+6		17		3		37		15		4
+7		17		5		37		35		19
+8		17		5		18		30		16
+
+ *For the Recognizer.java class, the order of the method calls can be seen below, as well as the value for lookahead:
+ Method:	pop()		bop()		boop()		pop()		bop()		boop()	
+ Lookahead:	(		x		)		[		z		,		
+ 
+ * In order to find the value of the lookahead variable, I placed a conditional point at line 100, after when all the comparisons have been done.
+ * The condition I used for my conditional breakpoint is as follows:
+ 	-lookahead == 'y'

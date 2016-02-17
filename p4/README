@@ -1,0 +1,123 @@
+
+****************
+* p4
+* CompSci 221-001
+* May 07
+* Haseeb Nain
+**************** 
+
+PROJECT OVERVIEW:
+
+	
+	This class is an implementation of recursive merge sorting. The class will break down the list into halves, and keep recursively going until the list has a size of one, or is empty.
+	It will then take the broken list and merge it together in a way that is chosen by the user, a natural order, or an order dictated by a comparator, which is to be provided by the user.
+	The class will also have various methods, these include finding the smallest and largest value using the natural order, or it will use an order dictated by a comparator,
+	this will be dictated by a comparator.
+
+
+INCLUDED FILES:
+
+ * README - this file
+ * DoubleLinkedList.java - This is my personal DoubleLinkedList, it can be used in place of the WrappedDLL.java class for Extra Credit.
+ * DoubleLinkedListADT.java - This is the abstract list that will be implemented and used as a guide for the WrappedDLL.java class. This class implements extends UnorderedListADT, and IndexedListADT
+ * ElementNotFoundException.java -  Represents the situation in which a target element is not present in a collection
+ * EmptyCollectionException.java - Represents the situation in which a collection is empty.
+ * IndexedListADT.java - Defines the interface to an indexed list collection. Elements are referenced by contiguous numeric indexes.
+ * ListADT.java - Defines the interface to a general list collection. Specific types of lists will extend this interface to complete the set of necessary operations.
+ * LinearNode.java - This class is used by my DoubleLinkedList, the class itself represents a node in a DoubleLinkedList.
+ * MergeSort.java - This is the actual MergeSort class, it has the main methods Sort, Sort with a comparator, Find Smallest, Find Smallest with a comparator, Find Largest, and Find Largest with a comparator. In order to run this class, it must be run in with a tester class.
+ 	its main purpose will be to sort elements in an order dictated by the user, this is done through the use of a comparator.
+ * MergeSortTester.java - This class is the tester for the MergeSort.java class, it takes the methods of the MergeSort and tests them through different scenarios
+ * reverseComparator.java - This is my personal comparator, used to test the comparator methods of the MergeSort.java class, this comparator reverse a value opposite that of a normal compareTo method. Leading to opposide comparisons.
+ * UnorderedListADT.java - Defines the interface to an unordered list collection. Elements are stored in any order the user desires.
+ * WrappedDLL.java - Wraps the java.util.LinkedList as a DoubleLinkedListADT implementation. Wrapped iterators do not throw ConcurrentModificationExceptions as expected, but all list methods and other iterator functionality appear to be working as necessary.
+ 
+
+BUILDING AND RUNNING:
+
+ * This program's main class is the MergeSort.java, it must be used in another class.
+ 	-This program will take in a DoubleLinkedList and perform various functions on that list, these include finding specific values in the list and/or sorting that list.
+ * The program worked correctly on Windows and Onyx computers.
+ * To run this programs testers, you must run the program with MergeSortTester.java class
+ 
+
+PROJECT DESIGN NOTES:
+
+ * This program was created with the help of the concept of MergeSort in mind. Merge sorts are done through a divide and conquer method, the sort will divide the list into halves untill there are either one element or no elements in the list.
+ 	Once the list is divided, it will be merged together, it is merged in an organized order.
+ * Simple tests were created first, so that a basis could be established. These first tests included testing of the MergeSort.java class' on empty lists, most of these tests failed.
+
+   
+ 
+
+
+PROJECT DEVELOPMENT AND TESTING NOTES:
+
+
+ * I first worked on the findSmallest, and findLargest methods of the MergeSort class, I chose to work on these first because they did not involve recursion.
+ 	Despite this I spent a good two days trying to find the smallest and largest value using recursion,
+ 	after consulting my teacher I realized I had over complicated the method, I then decided that using a simple while loop would be the best solution.
+ 	The while loop was conducted by using the lists iterator, and iterating through the list.
+ 	Constantly replacing the value of the smallest element with values smaller than it. The same concept was used for finding the largest value.
+ 	
+ * Finding the smallest and largest method using a comparator was also relatively simple, so I began to work on those next.
+ 	When finding the smallest/largest element for the non-comparator methods used the .compareTo() method, these comparisons where then simply replaced by c.compare(T o1, To2).
+ 	
+ * The sort method itself was not to difficult to wrap my head around after completing the find methods.
+ 	Because this method needed to be done recursively, I needed a base case.
+ 	The base case I chose was when the list has a size of 1 (or if an empty list is passed in, simply to return) this made sense with what I had learned about mergesort.
+ 	The list was divided through the use of for loops, filling up new lists with values from the beginning to the midpoint, and from the midpoint to the end.
+ 	With these new lists, I needed to merge the two lists.
+ 	
+ * Merging was done through the use of another method, this method would take in the first half of the list, the second half of the list, and the original list.
+ 
+ * The merge method would have a new list, the purpose of this new list would be to compare the first value of both list,
+ 	using the compareTo method, it would take the lower valued element.
+ 	Once one of the lists were emptied, another while loop would be used to add the remaining elements from the other list to the new list.  
+ 	Finally the original list would be set equal to the new sorted list.
+ 	
+ * After having the list equaled, I found that the sort method would still return the original list,
+ 	I ran the debugger and found that the list was being sorted in the method, but as it recursivly back tracked, the new list was not being used.
+ 	I then learned about java being a pass-by-reference system, this would cause a reference to be changed, not the value.
+ 	Realizing this, I then removed all instances of the new list, and began removing elements from the original list,
+ 	with this empty list I began adding the elements as they were being added to the new list.
+ 	This fixed my problem, and list was finally being sorted.
+ 	
+ * Sorting with the comparator was incredibly simple, once this issue was resolved. I created a new merge() method,
+ 	this merge method had a new parameter, this parameter was the comparator.
+ 	I then replaced my comparison in the original merge method, with c.compare(T o1, To2).
+ 
+ ///////////////////////////////////////////////////////
+ ////////////	TESTING			////////////////
+ ///////////////////////////////////////////////////////
+ 	
+ * With initial testing out of the way, I began to create new tests.
+ 
+ * The first test I created was a simple test, which always returned true, and was used to manually check the outcome of the sort methods, using the list.toString() method.
+ 
+ * These tests included testing the MergeSort.java class on varying sized lists.
+ 	Tests were made with lists having sizes of 1, 2, 3, 10, and 100.
+ 	The tests for 1, 2, and 3, were checked by comparing the first, middle, and last value being compared to the sorted list.
+ 	
+ * Tests for the findSmallest/findLargest method were done by having lists with varying sizes,
+ 	as well as trying the find methods on lists of size two with the same elements, and comparing the output with expected results.
+  
+  
+ 
+ ///////////////////////////////////////////////////////
+ ////////////	Extra Credit		////////////////
+ ///////////////////////////////////////////////////////
+ 	
+ I did it. I have tested this with my personal DoubleLinkedList and I have recieved the same results as the results expected by WrappedDLL.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

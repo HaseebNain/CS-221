@@ -1,0 +1,78 @@
+
+****************
+* p3
+* CompSci 221-001
+* April 13
+* Haseeb Nain
+**************** 
+
+PROJECT OVERVIEW:
+
+	This program will create a linked list of nodes, this list will be able to be traversed in both directions. The DoubleLinkedList works by taking nodes and filling them with an element. The big difference between this DoubleLinkedList 
+	and the original singlelist is that this list can be traversed in both directions, while the singlelist can only go in one direction.
+
+
+
+INCLUDED FILES:
+
+ * README - this file
+ * BadDoubleLinkedList.java - This is a dummy class used with the tester to ensure that majority of the tests fail.
+ * DoubleLinkedList.java - This is the main class of my project, this class implements the DoubleLinkedListADT. This class creates a list of nodes, which can be traversed in both directions.
+ * DoubleLinkedListADT.java - This is the abstract list that will be implemented and used as a guide for the DoubleLinkedList.java class. This class implements extends UnorderedListADT, and IndexedListADT
+ * DoubleLinkedListTester.java - This class is the tester for the DoubleLinkedList, it takes the methods of the DoubleLinkedList and tests them through different scenarios
+ * ElementNotFoundException.java -  Represents the situation in which a target element is not present in a collection
+ * EmptyCollectionException.java - Represents the situation in which a collection is empty.
+ * IndexedListADT.java - Defines the interface to an indexed list collection. Elements are referenced by contiguous numeric indexes.
+ * LinearNode.java - This class was original given for the SingleList assignment, it has been altered to repersent a node and the node in front of or behind.
+ * ListADT.java - Defines the interface to a general list collection. Specific types of lists will extend this interface to complete the set of necessary operations.
+ * UnorderedListADT.java - Defines the interface to an unordered list collection. Elements are stored in any order the user desires.
+
+BUILDING AND RUNNING:
+
+ * This program's main class is the DoubleLinkedList, it must be used in another class.
+ 	-This program creates nodes, and like an ArrayList it should be used to store and access items.
+ * The program worked correctly on Windows and Onyx computers.
+ * To run this programs testers, you must run the program with DoubleLinkedListTester.java class
+ 
+
+PROJECT DESIGN NOTES:
+
+ * This program was created with the help of the DoubleLinkedListADT.java class. The use of that class provided a basis which was built upon.
+ * Tests for this class were created with a dummy class, called BadDoubleLinkedList in which majority of the tests failed. I used a dummy class to check the layout of the actual tester class.
+   
+ 
+
+
+PROJECT DEVELOPMENT AND TESTING NOTES:
+
+ * The first thing changed was the LinearNode class, as I was originally unsure of how to start the assignment, I used the existing LinearNode class and added a pointer to the node's previous node.
+ * The first tests created were incredibly simplistic, simply checking the size of the DoubleLinkedList, then as more methods were created in the DoubleLinkedList class I was able to place more
+ 	complex tests into the tester class.
+ * I created a new test, this was simply a dummy test. It would always return true.
+ 	-The purpose of this test was to ensure that the toString was working correctly, I then used the dummy test to check individual elements of the DoubleLinkedList class
+ 		+Methods were then placed into System.out.println() statements and analyzed directly. I checked to see if the correct item was taken out or added to the list, and that the toString was properly updated. In essence this dummy test became a massive toString() test.
+ * I tested this class thoroughly with Integers, and also decided to test it again using String values. This was done initially to test how the casting would work, as an integer should be able to be casted into a string into the String holding DoubleLinkedList. But in order to test whether
+ 	it would handle everything correctly with Strings as it did with Integers. I then had to copy my tests for the integers and switch them out with String values, using ".equals()" for all comparisons instead of "=="
+ * I then added the correct exceptions to all the methods, if an index was searched for then it is possible for an IndexOutOfBoundsException, likewise if an element is searched for there's the chance for an ELementNotFoundException
+ * More tests were added that worked specifically checking to see if these exceptions are throw as expected.
+ * I then began work on the ListIterator, this did not take as long as I thought it would.
+ 	-I had no trouble traversing the list using the next,previous methods. The only thing that tripped me up at first was understanding when to allow the ListIterator to remove/add/set. This was fixed when I created booleans to keep track of whether the last action was next or previous
+ 	-I then had modCount keep track of the version of the list being iterated. This was confirmed working through various tests in the tester class
+ 	-There was a challenge figuring out how to return a simple Iterator when having a ListIterator, this was fixed by casting the ListIterator as a simple Iterator and return the cast iterator.
+ * After a lot of consoling the API and the Tutors, i feel incredibly good about this project assignment.
+ 
+ 
+ EXTRA CREDIT
+ 
+ * There was no Extra Credit, why?
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

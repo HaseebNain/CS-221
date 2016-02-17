@@ -1,0 +1,43 @@
+Haseeb Nain
+
+Debugging Log:
+I placed a breakpoint at point 40. I began debugging and found that once the list's get() method is invoked it pushes an exception,
+this is not an index out of bounds exception so I have decided to go deeper into the get() method. So I placed a breakpoint at line 43.
+
+Once in the get() method I stepped over and found the source of the exception to be at the Node's getNext() method.
+This occurs because the Node is empty, and the next node is also empty. Accounting for this, the index must be out of bounds.
+	So I will add a check to the get() method checking for the index and the size of the list.(bug)
+
+After adding in the check to the get() method. The next premature exit occurred at line 89. I will now be going into the next() method.
+
+In the next() method I notice the first thing to happen in this method is the comparison if(!hasNext()){throw new NoSuchElementException.
+I will now go into the hasNext() method.
+
+In the hasNext() method I notice that a ConcurrentModificationException is not throw, however what is returned is (nextNode != null).
+But I noticed that nextNode is equal to null, which is correct for a list of size 1.
+
+Going back into the next() method I realize that the check (if(!hasNext()) is wrong. hasNext in this case is false, which is correct.
+Going back into the DLLUser class I realize that an Iterator is made, and then the list is added to.
+	A concurrent modification is present, so a check for the modification must be implemented in the next() method of the iterator.(bug)
+	This still leads to an exception, and I notice that the iterator doesn't realize that the modification has occurred. I then placed an increment to modCount in the add() method.(bug)
+
+After placing the check, the next exception is caused by line 133 in DLLUser. with the iterator's hasNext() method. A ConcurrentModificationException is thrown.
+ 
+Going into the hasNext() method I noticed that the iterator calls the DLL's removeFirst() method, this method doesn't affect the modCount.
+	I have incremented modCount in the removeFirst() method so that it accounts for the change.(bug)
+
+The next point at which an error occurs is at line 446 in BadDLL. This error occurs as a result of the iterator's remove() method.
+
+I noticed that the remove() method that the lastReturned node, does not have a previous pointer.
+	I then went into the add methods and added the appropriate pointers to the addToRear() method, and the addToFront() method.(2bugs)
+Then I realized that the removal of the actual lastReturned node, does not increment the modCount of the list, as was done by the removeFirst() and removeLast() methods.
+	I have now incremented the modCount to show this change in the list.(bug)
+	
+I also went through the constructor for the iterator, specifically when given a starting index, and noticed that the for-loop moving the cursor was incrementing the nextIdx.
+This is also being incremented in the next() method. I removed this outer increment and all is well.(bug) 
+
+
+Amount of "bugs" found: 7
+
+*I HAVE ALSO ATTEMPTED THE EXTRACREDIT AND HAVE SENT YOU THE UPDATED DOUBLELINKEDLIST*
+
